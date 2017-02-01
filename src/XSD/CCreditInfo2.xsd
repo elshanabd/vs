@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+         <xs:element name="CreditInfo">
+               <xs:complexType>
+                     <xs:sequence>
+                           <xs:element name="Header">
+                                 <xs:complexType>
+                                       <xs:sequence>
+                                             <xs:element name="BankID" type="xs:int"></xs:element>
+                                             <xs:element name="BankName" type="xs:string"></xs:element>
+                                             <xs:element name="ReportingDate" type="xs:string"></xs:element>
+                                       </xs:sequence>
+                                 </xs:complexType>
+                           </xs:element>
+                           <xs:element name="Credits">
+                                 <xs:complexType>
+                                       <xs:sequence>
+                                             <xs:element name="Credit" minOccurs="1" maxOccurs="unbounded" >
+                                                   <xs:complexType>
+                                                         <xs:sequence>
+                                                               <xs:element name="Borrower">
+                                                                     <xs:complexType>
+                                                                           <xs:sequence>
+                                                                                 <xs:element name="id" type="xs:string"></xs:element>
+                                                                                 <xs:element name="name" type="xs:string"></xs:element>
+                                                                                 <xs:element name="CountryCode" type="xs:string"></xs:element>
+                                                                                 <xs:element name="BankruptcyStatus" type="xs:int"></xs:element>
+                                                                                 <xs:element name="DateOfBirth" type="xs:string"></xs:element>
+                                                                                 <xs:element name="PlaceOfBirth" type="xs:string"></xs:element>
+                                                                                 <xs:element name="PinCode" type="xs:string"></xs:element>
+                                                                                  <xs:choice>     <xs:element name="Guarantees" minOccurs="0" maxOccurs="1">
+                                                                                       <xs:complexType>
+                                                                                         <xs:sequence>
+                                                                                                 <xs:element name="Guarantee" minOccurs="1" maxOccurs="20">
+                                                                                                         <xs:complexType><xs:sequence>
+                                                                                                                     <xs:element name="id" type="xs:string"></xs:element>
+                                                                                                                     <xs:element name="name" type="xs:string"></xs:element>
+                                                                                                                     <xs:element name="CountryCode" type="xs:string"></xs:element>
+                                                                                                                     <xs:element name="DateOfBirth" type="xs:string"></xs:element>
+                                                                                                                     <xs:element name="PlaceOfBirth" type="xs:string"></xs:element>
+                                                                                                                     <xs:element name="PinCode" type="xs:string"></xs:element>
+                               </xs:sequence></xs:complexType>                                                         </xs:element>   
+                                                                                             </xs:sequence>
+
+                                                                                    </xs:complexType>
+                                                                               </xs:element>  </xs:choice>
+                                                                           </xs:sequence>
+                                                                     </xs:complexType>
+                                                               </xs:element>
+                                                               <xs:element name="AccountNo" type="xs:string"></xs:element>
+                                                               <xs:element name="CurrencyOfCredit" type="xs:string"></xs:element>
+                                                               <xs:element name="CreditType" type="xs:int"></xs:element>
+                                                               <xs:element name="InitialAmountOfCredit" type="xs:int"></xs:element>
+                                                               <xs:element name="CreditLineAmount" type="xs:int"></xs:element>
+                                                               <xs:element name="DisoutAmountOfCredit" type="xs:decimal"></xs:element>
+                                                               <xs:element name="AnnualInterestRate" type="xs:int"></xs:element>
+                                                               <xs:element name="PurposeOfCredit" type="xs:int"></xs:element>
+                                                               <xs:element name="CreditPeriodInMonths" type="xs:int"></xs:element>
+                                                               <xs:element name="DateOfGrant" type="xs:string"></xs:element>
+                                                               <xs:element name="DueTimeFirstContract" type="xs:string"></xs:element>
+                                                               <xs:element name="DueTimeLastContract" type="xs:string"></xs:element>
+                                                               <xs:element name="LastPaymentDate"></xs:element>
+                                                               <xs:element name="MonthlyPaymentAmount" type="xs:decimal"></xs:element>
+                                                               <xs:element name="DaysMainSumIsOverdue" type="xs:int"></xs:element>
+                                                               <xs:element name="DaysInterestIsOverdue" type="xs:int"></xs:element>
+                                                               <xs:element name="OiaForRepperiod" type="xs:decimal"></xs:element>
+                                                               <xs:element name="NumberOfProlongs" type="xs:int"></xs:element>
+                                                               <xs:element name="CreditClassCode" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+                                                               <xs:element name="CreditStatusCode" type="xs:string"></xs:element>
+                                                               <xs:element name="Collateral" minOccurs="1" maxOccurs="1" >
+                                                                     <xs:complexType>
+                                                                           <xs:sequence>
+                                                                                 <xs:element name="CollateralTypeCode" type="xs:string"></xs:element>
+                                                                                 <xs:element name="AnyInfoToDisting" minOccurs="0" maxOccurs="1"></xs:element>
+                                                                                 <xs:element name="MarketValue" minOccurs="0" maxOccurs="1" type="xs:decimal"></xs:element>
+                                                                                 <xs:element name="RegistryNo" minOccurs="0" maxOccurs="1" ></xs:element>
+                                                                                 <xs:element name="RegistryDate" minOccurs="0" maxOccurs="1" ></xs:element>
+                                                                                 <xs:element name="RegistryAgency" minOccurs="0" maxOccurs="1" ></xs:element>
+                                                                           </xs:sequence>
+                                                                     </xs:complexType>
+                                                               </xs:element>
+                                                         </xs:sequence>
+                                                   </xs:complexType>
+                                             </xs:element>
+                                       </xs:sequence>
+                                 </xs:complexType>
+                           </xs:element>
+                     </xs:sequence>
+               </xs:complexType>
+         </xs:element>
+   </xs:schema>
+ 

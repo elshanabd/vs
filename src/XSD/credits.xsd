@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="CreditInfo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Header">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="BankID" type="xs:integer"/>
+                            <xs:element name="BankName">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="ReportingDate" type="dateType"/>           
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Credits">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Credit" type="creditType" minOccurs="0" maxOccurs="unbounded"/>	    	    
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="creditType">
+        <xs:sequence>
+            <xs:element name="Borrower" type="BorrowerType"/>
+            <xs:element name="AccountNo">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>  
+                </xs:simpleType>
+            </xs:element>      
+            <xs:element name="CurrencyOfCredit" minOccurs="0"/>				
+            <xs:element name="CreditType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="InitialAmountOfCredit" minOccurs="0"  maxOccurs="1"/>
+            <xs:element name="CreditLineAmount" minOccurs="0"  maxOccurs="1"/>
+            <xs:element name="DisoutAmountOfCredit" minOccurs="0"  maxOccurs="1"/>
+            <xs:element name="AnnualInterestRate" minOccurs="0"  maxOccurs="1"/>
+            <xs:element name="PurposeOfCredit" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CreditPeriodInMonths" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DateOfGrant" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DueTimeFirstContract"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DueTimeLastContract"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="LastPaymentDate"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MonthlyPaymentAmount"  minOccurs="0" maxOccurs="1"/>      
+            <xs:element name="DaysMainSumIsOverdue"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DaysInterestIsOverdue"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="OiaForRepperiod"  minOccurs="0" maxOccurs="1"/>
+            <!-- max occurs should be 0-->
+            <xs:element name="OiaForLastThreeMonths"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="NumberOfProlongs"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CreditClassCode"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CreditStatusCode"  minOccurs="0" maxOccurs="1"/>
+            <!-- max occurs should be 0-->
+            <xs:element name="Provision"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Collateral" minOccurs="0" maxOccurs="1"><!-- type="collateralType" /-->
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="CollateralTypeCode"  minOccurs="0" maxOccurs="1"/>
+                        <xs:element name="AnyInfoToDisting" minOccurs="0" maxOccurs="1">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:maxLength value="500"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="MarketValue"  minOccurs="0" maxOccurs="1"/>
+                        <xs:element name="RegistryNo"  minOccurs="0" maxOccurs="1"/>
+                        <xs:element name="RegistryDate"  minOccurs="0" maxOccurs="1"/>
+                        <xs:element name="RegistryAgency"  minOccurs="0" maxOccurs="1"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="nameType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+	
+  
+
+
+    <xs:complexType name="BorrowerType">
+        <xs:sequence>      
+            <xs:element name="id"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="name"  minOccurs="0" maxOccurs="1"/>               
+            <xs:element name="CountryCode"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="BankruptcyStatus"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DateOfBirth" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PlaceOfBirth" minOccurs="0" maxOccurs="1"/>      
+            <xs:element name="PinCode"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Guarantees" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Guarantee" minOccurs="0" maxOccurs="20">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="id" minOccurs="0" maxOccurs="1"/>
+                                    <xs:element name="name"  minOccurs="0" maxOccurs="1"/>
+                                    <xs:element name="CountryCode"  minOccurs="0" maxOccurs="1"/>
+                                    <xs:element name="DateOfBirth" minOccurs="0" maxOccurs="1"/>
+                                    <xs:element name="PlaceOfBirth" minOccurs="0" maxOccurs="1"/>      
+                                    <xs:element name="PinCode"  minOccurs="0" maxOccurs="1"/>								
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Group" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="code" minOccurs="1" maxOccurs="1"/>
+                        <xs:element name="name" minOccurs="1" maxOccurs="1"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>	
+            <!-- maxOccurs should be 0 -->	
+            <xs:element name="MainOwners" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Owner" minOccurs="0" maxOccurs="20">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="id" minOccurs="0" maxOccurs="1"/>
+                                    <xs:element name="name"  minOccurs="0" maxOccurs="1"/>								
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>      
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="dateType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(\d{2}/\d{2}/\d{4})*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
