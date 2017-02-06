@@ -3,7 +3,8 @@
 Project for resolving banks and non banking organizatios credit portfel data written in JAVA. Data included this type of informations:  credits, borrowers, guaranters, collateals and organizations own information which is collected in one XML file.
 VS prased XML file mapped ti to objects and checked up it.Finally export results to EXCEL(.xlsx) file and aganin XML file 
 
-#Requirements:
+Requirements:
+-------------
 JDK(>1.8)
 
 LIBs for excel making:  
