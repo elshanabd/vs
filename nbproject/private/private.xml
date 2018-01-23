@@ -12,15 +12,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/developing/NetBeans_Projects/NewGUI/src/Parsing/ShemaValidation.java</file>
-            <file>file:/D:/developing/NetBeans_Projects/NewGUI/src/Properties/data/rules/ConfigProperties.java</file>
-            <file>file:/D:/developing/NetBeans_Projects/NewGUI/src/Rules/GeneralRulesCheckup.java</file>
-            <file>file:/D:/developing/NetBeans_Projects/NewGUI/src/GUI/ListTable.java</file>
-            <file>file:/D:/developing/NetBeans_Projects/NewGUI/src/Parsing/SaxParser.java</file>
-            <file>file:/D:/developing/NetBeans_Projects/NewGUI/src/XSD/credits.xsd</file>
-            <file>file:/D:/developing/NetBeans_Projects/NewGUI/src/XSD/CCreditInfo2.xsd</file>
-            <file>file:/D:/developing/NetBeans_Projects/NewGUI/src/Parsing/XsdErrorHandler.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

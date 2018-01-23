@@ -14,7 +14,7 @@ public class Recursiya {
     public static void main(String args[]) {
          
      
-myRecursiveMethod(100);
+myRecursiveMethod(101);
 } 
       
     public static int myRecursiveMethod (int x)
