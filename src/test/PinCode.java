@@ -35,8 +35,6 @@ System.out.println("[A-Z0-9]{7} --- 21RQХDK Output "+Pattern.matches("[A-Z0-9]{
 System.out.println("[A-Z0-9]{7} --- 483АDZE Output Royal "+Pattern.matches("[A-Z0-9]{7}","483АDZE"));//from RB 
 System.out.println("[A-Z0-9]{7} --- 483ADZE Output İAMAS "+Pattern.matches("[A-Z0-9]{7}","483ADZE"));//from İAMAS 
 System.out.println("[A-Z0-9]{7} --- 58XXVPJ Output Kapital "+Pattern.matches("[A-Z0-9]{7}","58XXVPJ"));//from Kpt
-System.out.println("[A-Z0-9]{7} --- 58XXVP* Output company "+Pattern.matches("[A-Z0-9]{7}","58XXVP*"));//from Company
-System.out.println("[A-Z0-9]{7} --- 58XXVP* Output company "+Pattern.matches("[A-Z0-9]{7}","cvfre45*"));//from Company
 
 
 System.out.println(aa.toString());
