@@ -16,6 +16,7 @@ import CreditParts.Guarantees;
 import CreditParts.CreditDetails;
 import CreditParts.Collateral;
 import CreditParts.Borrower;
+import Rules.GeneralOutput;
 
 import Rules.GeneralRulesCheckup;
 import Rules.XMLmaker;
@@ -84,6 +85,7 @@ public class Handler2 extends DefaultHandler{
     public ArrayList<Guarantees> listGuarantees = new ArrayList<Guarantees>();
     
    GeneralRulesCheckup genCheckUp= new GeneralRulesCheckup();
+   //GeneralOutput genOutput = new GeneralOutput();
    OutputToFile otf=new OutputToFile (); 
    XMLmaker XmlMake=new XMLmaker();
 
@@ -421,11 +423,15 @@ public class Handler2 extends DefaultHandler{
 
       if(qName.contentEquals("Credit")){
           creditSay++;
+          
+          
                try {
+                   
                    if(!objCDetails.getCreditStatusCode().contentEquals("001")){
           genCheckUp.ResultsCheck(objBorr, listGuarantees, objCDetails, objColl, objHeader, "Credit");
-                   } else { 
-closed_credits++;}
+                   } else { closed_credits++;}
+           genCheckUp.ResultsCheck(objBorr, listGuarantees, objCDetails, objColl, objHeader, "Credit");
+           //genOutput.ResultsOutput(objBorr, listGuarantees, objCDetails, objColl, objHeader, "Credit");
 
                } catch (IOException ex) {
                    Logger.getLogger(Handler2.class.getName()).log(Level.SEVERE, null, ex);
