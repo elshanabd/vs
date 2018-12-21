@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CreditInfo>
+<Header>
+<BankID>1255</BankID>
+<BankName> ASC</BankName>
+<ReportingDate>06/08/2018</ReportingDate>
+</Header>
+<Credits>
+<Congratulations>Hec bir səhv tapılmadı</Congratulations>
+</Credits>
+</CreditInfo>
