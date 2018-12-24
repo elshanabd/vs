@@ -36,7 +36,8 @@ import javax.xml.parsers.SAXParser;
  */
 public class OpenFile extends JInternalFrame{
 
-   
+   String []options1 = {"Ətraflı yoxlamaya davam","Cancel"};
+   JPanel myPanel;
     //SAXParser sParser;
     Handler handler;
     //String account_no;
@@ -98,12 +99,26 @@ public class OpenFile extends JInternalFrame{
           boolean vld=sp.isValid();
           if(vld!=false)
           {
-    JOptionPane.showMessageDialog(null, "İlkin yoxlama uğurla başa çatdı", 
-       "Faylın ilkin yoxlama mərhələsi", JOptionPane.INFORMATION_MESSAGE);
+//    JOptionPane.showMessageDialog(null, "İlkin yoxlama uğurla başa çatdı", 
+//       "Faylın ilkin yoxlama mərhələsi", JOptionPane.INFORMATION_MESSAGE);
+              myPanel = new JPanel();
+              myPanel.add(new JLabel("İlkin yoxlama uğurla başa çatdı"));
+    int res = JOptionPane.showOptionDialog(null, myPanel,"Faylın ilkin yoxlama mərhələsi",
+                          JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,options1, null);
     
+     switch (res){ 
+        case 0: {//JOptionPane.showMessageDialog(null, "Şəxsiyyət Vəsiqəsi Seriya Nömrəsi(AZE) üzrə Sorğulama üçün faylın daxil edilməsi");
               sp = new SaxParser();
               sp.setXmlInput(new FileInputStream(file));
               sp.getSaxParser(vld);
+             
+        break;}
+        case 1: {JOptionPane.showMessageDialog(null, "Yoxlama sonlandırıldı");
+            
+        break;}
+            default: System.out.println("NoSelected");
+        break;
+        }  
 
           }
 //          else 

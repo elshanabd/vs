@@ -300,15 +300,15 @@ if(tag_name.contentEquals("Credit"))
     System.out.println(" Last "+tag_name.toString());
     XMLmassiv.clear();
     
-    if(t==0)
-    {
-     //XMLmassiv.add("<CONGRATULATIONS> Hec bir səhv tapılmadı </CONGRATULATIONS>");
-     XMLmassiv.add(
-     prop.getAll().get("tLess")+prop.getAll().get("tCongratulations")+prop.getAll().get("tMore")+
-     prop.getAll().get("tNoError")+
-     prop.getAll().get("tLess")+prop.getAll().get("tSlash")+prop.getAll().get("tCongratulations")+prop.getAll().get("tMore")
-     );
-    }
+//    if(t==0)
+//    {
+//     //XMLmassiv.add("<CONGRATULATIONS> Hec bir səhv tapılmadı </CONGRATULATIONS>");
+//     XMLmassiv.add(
+//     prop.getAll().get("tLess")+prop.getAll().get("tCongratulations")+prop.getAll().get("tMore")+
+//     prop.getAll().get("tNoError")+
+//     prop.getAll().get("tLess")+prop.getAll().get("tSlash")+prop.getAll().get("tCongratulations")+prop.getAll().get("tMore")
+//     );
+//    }
     objTags.setCredits(prop.getAll().get("tLess")+prop.getAll().get("tSlash")+prop.getAll().get("tCredits")+prop.getAll().get("tMore"));
     XMLmassiv.add(objTags.getCredits());
     
