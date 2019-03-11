@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -168,6 +169,8 @@ public class GeneralGui extends JFrame implements ActionListener {
                     try {
                         openFile = new OpenFile();
                     } catch (FileNotFoundException ex) {
+                        Logger.getLogger(GeneralGui.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
                         Logger.getLogger(GeneralGui.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     desktop.add(openFile);

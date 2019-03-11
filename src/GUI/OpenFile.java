@@ -4,12 +4,18 @@ package GUI;
 
 import Parsing.SaxParser;
 import java.awt.FlowLayout;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 //import java.time.Clock;
 import java.util.logging.Handler;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -41,10 +47,14 @@ public class OpenFile extends JInternalFrame{
     //SAXParser sParser;
     Handler handler;
     //String account_no;
-   static File file;
+    static File file;
     SaxParser sp;
+    boolean vld;
+    ZipEntry entry;
+    private static final String DEST_FOLDER = ".//Extract";
+    static final int BUFFER = 2048;
     
-    OpenFile() throws FileNotFoundException{
+    OpenFile() throws FileNotFoundException, IOException{
         
     JFrame.setDefaultLookAndFeelDecorated(true);
     JDialog.setDefaultLookAndFeelDecorated(true);
@@ -80,25 +90,27 @@ public class OpenFile extends JInternalFrame{
       String xml="xml".toUpperCase();
       String zip="zip".toUpperCase();
       
-      if(!xml.equals(ext)||!zip.equals(ext))
-      {
-          JOptionPane.showMessageDialog(null, "Düzgün fayl daxil edilməmişdir : Faylın uzantısı ["+ext+"] ", "Xəbərdarlıq", JOptionPane.WARNING_MESSAGE);
-      } 
-      else if(xml.equals(ext))
-      {
-          System.out.println("Seçilən faylın Ölçü:" + file.length());
-           sp= new SaxParser();
-           sp.setXmlInput(new FileInputStream(file));                      
-         // sp.saxParser.parse(file, handler);
-        //  sp.saxParser.
+      /**Swich begin**/
+      
+            switch (ext) {
+          case "XML": System.out.println();
+                    sp= new SaxParser();
+          //sp.setXmlfile(file.toString());
+          sp.setXmlInput(new FileInputStream(file));
           System.out.println("Selected file : "+file);
           sp.getSaxParser();
           
-          boolean vld=sp.isValid();
+          vld=sp.isValid();
           if(vld!=false)
           {
 //    JOptionPane.showMessageDialog(null, "İlkin yoxlama uğurla başa çatdı", 
 //       "Faylın ilkin yoxlama mərhələsi", JOptionPane.INFORMATION_MESSAGE);
+//    
+//              sp = new SaxParser();
+//              sp.setXmlInput(new FileInputStream(file));
+//              sp.getSaxParser(vld);
+
+              
               myPanel = new JPanel();
               myPanel.add(new JLabel("İlkin yoxlama uğurla başa çatdı"));
     int res = JOptionPane.showOptionDialog(null, myPanel,"Faylın ilkin yoxlama mərhələsi",
@@ -118,19 +130,92 @@ public class OpenFile extends JInternalFrame{
         break;
         }  
 
+          
+
           }
-//          else 
-//          {
-//              JOptionPane.showMessageDialog(null, "Fayıl İlkin yoxlamadan keçmədi", "İlkin yoxlama xətası", JOptionPane.ERROR_MESSAGE);
-//          }
-//          
+
           
           
-      } else {
+          break;
+          case "ZIP": 
+              System.out.println(" Zip Part : begin");
+              File folder = new File(DEST_FOLDER);
+              if(!folder.exists()){
+                  folder.mkdir();
+              }
+             BufferedOutputStream dest = null;
+                        sp= new SaxParser();
+          //sp.setXmlfile(file.toString());
+          FileInputStream fis = new FileInputStream(file);
+          ZipInputStream zis = new ZipInputStream(new BufferedInputStream(fis));
+          while((entry = zis.getNextEntry()) != null) {
+          //entry =zis.getNextEntry();
+          int count;
+                          byte data[] = new byte[BUFFER];
+          System.out.println(" entry Zip: "+entry.getName());
+          File newFile = new File(DEST_FOLDER + File.separator + entry.getName());
+                          if(entry.isDirectory()){
+                    if(!newFile.exists()){
+                        newFile.mkdirs();
+                                  System.out.println(" Output of Zip is Directory");
+
+                    }
+                }
+          else{
+                              
+                FileOutputStream fos = new FileOutputStream(newFile);
+                dest = new BufferedOutputStream(fos, BUFFER);
+                while ((count = zis.read(data, 0, BUFFER)) != -1) {
+                   dest.write(data, 0, count);
+                }
+                dest.flush();
+                dest.close();               
+              
+              String destPath = DEST_FOLDER + File.separator + entry.getName();
+              File fileNew=new File(destPath);
+              sp.setXmlInput(new FileInputStream(fileNew));
+          //System.out.println("Selected file : "+destPath);
+          sp.getSaxParser();
           
-          System.out.println("Zip : Seçilən faylın Ölçü:" + file.length());
-      
+          vld=sp.isValid();
+          if(vld!=false)
+          {
+
+
+              myPanel = new JPanel();
+              myPanel.add(new JLabel("İlkin yoxlama uğurla başa çatdı"));
+    int res = JOptionPane.showOptionDialog(null, myPanel,"Faylın ilkin yoxlama mərhələsi",
+                          JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,options1, null);
+    
+     switch (res){ 
+        case 0: {//JOptionPane.showMessageDialog(null, "Şəxsiyyət Vəsiqəsi Seriya Nömrəsi(AZE) üzrə Sorğulama üçün faylın daxil edilməsi");
+              sp = new SaxParser();
+              sp.setXmlInput(new FileInputStream(fileNew));
+              sp.getSaxParser(vld);
+             
+        break;}
+        case 1: {JOptionPane.showMessageDialog(null, "Yoxlama sonlandırıldı");
+            
+        break;}
+            default: System.out.println("NoSelected");
+        break;
+        }  
+ 
+          }
+          }
+          }    
+          break;
+          default :  
+    JOptionPane.showMessageDialog(null, "Düzgün fayl daxil edilməmişdir : Faylın uzantısı ["+ext+"] ", "Xəbərdarlıq", JOptionPane.WARNING_MESSAGE);
+    
+              
+                  
       }
+      
+      /**Swich end**/
+      
+      
+
     } 
 //    else 
 //    {
