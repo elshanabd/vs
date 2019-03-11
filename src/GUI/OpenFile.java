@@ -56,9 +56,13 @@ public class OpenFile extends JInternalFrame{
         
     JFileChooser    fc = new JFileChooser();
                                
-    String[] EXTENSION=new String[]{"xml"};
-    FileFilter filter = new FileNameExtensionFilter("XML fayıllar",EXTENSION );
-    fc.addChoosableFileFilter(filter);
+    String[] EXTENSION=new String[]{"xml","zip"};
+    FileFilter filterXml = new FileNameExtensionFilter("XML fayıllar",EXTENSION[0] );
+    FileFilter filterZip = new FileNameExtensionFilter("Zip fayıllar",EXTENSION[1] );
+    
+    fc.addChoosableFileFilter(filterXml);
+    fc.addChoosableFileFilter(filterZip);
+    
 
     int ret = fc.showDialog(null, "Faylı Seç");
 //  int ret = fc.showSaveDialog(null);
@@ -74,23 +78,17 @@ public class OpenFile extends JInternalFrame{
       String ext = filename.substring(filename.lastIndexOf(".") + 1, filename.length()).toUpperCase();
       
       String xml="xml".toUpperCase();
-      if(!xml.equals(ext))
+      String zip="zip".toUpperCase();
+      
+      if(!xml.equals(ext)||!zip.equals(ext))
       {
           JOptionPane.showMessageDialog(null, "Düzgün fayl daxil edilməmişdir : Faylın uzantısı ["+ext+"] ", "Xəbərdarlıq", JOptionPane.WARNING_MESSAGE);
       } 
-      else 
+      else if(xml.equals(ext))
       {
           System.out.println("Seçilən faylın Ölçü:" + file.length());
-         
-          
            sp= new SaxParser();
-           
-          
-          //sp.setXmlfile(file.toString());
-          
-           sp.setXmlInput(new FileInputStream(file));
-           
-           
+           sp.setXmlInput(new FileInputStream(file));                      
          // sp.saxParser.parse(file, handler);
         //  sp.saxParser.
           System.out.println("Selected file : "+file);
@@ -128,12 +126,16 @@ public class OpenFile extends JInternalFrame{
 //          
           
           
+      } else {
+          
+          System.out.println("Zip : Seçilən faylın Ölçü:" + file.length());
+      
       }
     } 
-    else 
-    {
-        JOptionPane.showMessageDialog(null, "Fayıl seçilməmişdir", "Xəbərdarlıq", JOptionPane.WARNING_MESSAGE);
-    }
+//    else 
+//    {
+//        JOptionPane.showMessageDialog(null, "Fayıl seçilməmişdir", "Xəbərdarlıq", JOptionPane.WARNING_MESSAGE);
+//    }
         
     }
     
