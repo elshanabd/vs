@@ -177,7 +177,9 @@ writer.close();
 public void   MakeExcel(WrongData WrongDataObj) 
         throws FileNotFoundException, IOException, InvalidFormatException{
     WrongDataList.add(WrongDataObj);
-   String excelFileName = "./"+fn+"_"+rand+ext;//name of excel file
+      File dir = new File("./Extract");
+    if(!dir.isDirectory())dir.mkdirs();
+   String excelFileName = dir+File.separator+fn+"_"+rand+ext;//name of excel file
    xlsxFile = new File(excelFileName);
   
   //System.out.println("AP : "+excelFileName);
@@ -249,7 +251,9 @@ public void   MakeExcel(WrongData WrongDataObj)
 public void createNewFile() throws IOException
 {
     //fn=fn.replaceAll("!@#$%^&*?", "");
-    file=new File("./"+fn+"_"+rand+".txt");
+    File dir = new File("./Extract");
+    if(!dir.isDirectory())dir.mkdirs();
+    file=new File(dir+File.separator+fn+"_"+rand+".txt");
     file.createNewFile();
     //System.out.println(file.getAbsoluteFile());
     System.out.println("Creating new file: "+file.getAbsolutePath());
