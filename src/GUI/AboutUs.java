@@ -47,10 +47,10 @@ public class AboutUs extends JInternalFrame{
         cp.add("North", northPanel);
         informationLabelPanel.setLayout(new GridLayout(4, 1, 1, 1));
         //informationLabelPanel.add(new JLabel("               About Product"));
-        informationLabelPanel.add(new JLabel("              Version 2.0 (64 bit)"));
+        informationLabelPanel.add(new JLabel("              Version 3.0 (64 bit)"));
         informationLabelPanel.add(new JLabel("            Mobil : +994 55 2077033"));
         informationLabelPanel.add(new JLabel("         Email : Elshan.abd@gmail.com"));
-        informationLabelPanel.add(new JLabel("Copywrite (c) 2015 , Validation System"));
+        informationLabelPanel.add(new JLabel("Copywrite (c) 2015-2019 , Validation System"));
         
         centerPanel.add(informationLabelPanel);
         
