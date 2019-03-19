@@ -11,14 +11,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
+
 //import java.time.Clock;
 import java.util.logging.Handler;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -26,10 +23,10 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.xml.parsers.SAXParser;
+
 
 /*
  * To change this template, choose Tools | Templates
@@ -170,7 +167,7 @@ public class OpenFile extends JInternalFrame{
                 }
                 dest.flush();
                 dest.close();               
-              
+
               String destPath = DEST_FOLDER + File.separator + entry.getName();
               File fileNew=new File(destPath);
               sp.setXmlInput(new FileInputStream(fileNew));
@@ -203,7 +200,10 @@ public class OpenFile extends JInternalFrame{
  
           }
           }
-          }    
+          }
+            zis.closeEntry();
+            zis.close();
+            fis.close();
           break;
           default :  
     JOptionPane.showMessageDialog(null, "Düzgün fayl daxil edilməmişdir : Faylın uzantısı ["+ext+"] ", "Xəbərdarlıq", JOptionPane.WARNING_MESSAGE);
