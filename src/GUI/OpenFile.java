@@ -45,6 +45,7 @@ public class OpenFile extends JInternalFrame{
     Handler handler;
     //String account_no;
     static File file;
+    static File dir;
     SaxParser sp;
     boolean vld;
     ZipEntry entry;
@@ -62,7 +63,9 @@ public class OpenFile extends JInternalFrame{
    
         
     JFileChooser    fc = new JFileChooser();
-                               
+    if (dir!=null){
+        fc.setCurrentDirectory(dir);
+    }
     String[] EXTENSION=new String[]{"xml","zip"};
     FileFilter filterXml = new FileNameExtensionFilter("XML fayıllar",EXTENSION[0] );
     FileFilter filterZip = new FileNameExtensionFilter("Zip fayıllar",EXTENSION[1] );
@@ -77,6 +80,7 @@ public class OpenFile extends JInternalFrame{
     
     if (ret == JFileChooser.APPROVE_OPTION) {
       file = fc.getSelectedFile();
+      dir=file.getParentFile();
       //File file =fc.showSaveDialog();
        //size=file.length();
      
